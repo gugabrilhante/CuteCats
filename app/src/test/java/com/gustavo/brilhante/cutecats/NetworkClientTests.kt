@@ -35,7 +35,7 @@ class NetworkClientTest {
         // Assert
         Assert.assertEquals(2, result.size)
         assertEquals("url1.com", result[0].url)
-        assertEquals("url1.com", result[1].url)
+        assertEquals("url2.com", result[1].url)
     }
 
     private fun mockItemsDto(): List<ItemDto> {
@@ -63,5 +63,14 @@ class NetworkClientTest {
 
         // Act
         networkClient.getItems() // Should throw
+    }
+
+    @Test
+    fun `getItems returns empty list when service returns empty`() = runTest {
+        // Arrange
+        coEvery { itemService.getItems() } returns emptyList()
+
+        // Act & Assert
+        assertEquals(0, networkClient.getItems().size)
     }
 }
