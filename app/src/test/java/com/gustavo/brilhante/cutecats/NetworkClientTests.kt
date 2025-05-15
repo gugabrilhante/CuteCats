@@ -35,6 +35,7 @@ class NetworkClientTest {
         // Assert
         Assert.assertEquals(2, result.size)
         assertEquals("url1.com", result[0].url)
+        assertEquals("url1.com", result[1].url)
     }
 
     private fun mockItemsDto(): List<ItemDto> {
